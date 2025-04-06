@@ -1,9 +1,9 @@
-# desktop_client/desktop_client.py 0.0.5
+# desktop_client/desktop_client.py 0.1.0
 import tkinter as tk
 from tkinter import scrolledtext
 import requests
-import threading  # Для асинхронного оновлення інтерфейсу
-import logging  # Для логування помилок
+import threading
+import logging
 
 # !!! ВАЖЛИВО: Знайди URL твого API на Hugging Face Space !!!
 # Коли твій Gradio додаток працює, перейди у вкладку "API" (може бути під кнопкою "...")
@@ -22,11 +22,11 @@ def send_message():
     if not user_input:
         return  # Не відправляти порожні повідомлення
 
-    chat_area.config(state=tk.NORMAL)  # Дозволити редагування поля чату
-    chat_area.insert(tk.END, f"Ти: {user_input}\n")  # Додати повідомлення користувача
-    input_field.delete("1.0", tk.END)  # Очистити поле вводу
-    chat_area.config(state=tk.DISABLED)  # Заборонити редагування
-    chat_area.see(tk.END)  # Прокрутити вниз
+    chat_area.config(state=tk.NORMAL)
+    chat_area.insert(tk.END, f"Ти: {user_input}\n")
+    input_field.delete("1.0", tk.END)
+    chat_area.config(state=tk.DISABLED)
+    chat_area.see(tk.END)
 
     # Показуємо, що йде запит
     chat_area.config(state=tk.NORMAL)

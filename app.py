@@ -1,4 +1,4 @@
-# app.py 0.0.5
+# app.py 0.1.0
 import gradio as gr
 from transformers import pipeline
 
@@ -52,7 +52,7 @@ iface = gr.Interface(
     fn=get_bot_response,  # Функція, яка буде викликатись для отримання відповіді
     inputs=gr.Textbox(lines=2, placeholder="Введіть ваше повідомлення тут..."),  # Поле для вводу тексту
     outputs=gr.Textbox(),  # Поле для виводу відповіді
-    title="Чат для чатботів v0.0.5",  # Змінено назву
+    title="Чат для чатботів v0.1.0",  # Змінено назву
     description="Простий чат-бот на базі моделі з Hugging Face (benjamin/gpt2-wechsel-ukrainian)"  # Опис
 )
 

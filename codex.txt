@@ -1,15 +1,16 @@
 codex v0.0.5 release
+for version 0.1.0-alpha release
 [[[FILENAME: {filename} ]]]
 ...{filebody}
 [[[ENDFILENAME]]] {end of file}/{#EOF}
 
 [[[FILENAME: desktop_client\desktop_client.py]]]
-# desktop_client/desktop_client.py 0.0.5
+# desktop_client/desktop_client.py 0.1.0
 import tkinter as tk
 from tkinter import scrolledtext
 import requests
-import threading  # Для асинхронного оновлення інтерфейсу
-import logging  # Для логування помилок
+import threading
+import logging
 
 # !!! ВАЖЛИВО: Знайди URL твого API на Hugging Face Space !!!
 # Коли твій Gradio додаток працює, перейди у вкладку "API" (може бути під кнопкою "...")
@@ -28,11 +29,11 @@ def send_message():
     if not user_input:
         return  # Не відправляти порожні повідомлення
 
-    chat_area.config(state=tk.NORMAL)  # Дозволити редагування поля чату
-    chat_area.insert(tk.END, f"Ти: {user_input}\n")  # Додати повідомлення користувача
-    input_field.delete("1.0", tk.END)  # Очистити поле вводу
-    chat_area.config(state=tk.DISABLED)  # Заборонити редагування
-    chat_area.see(tk.END)  # Прокрутити вниз
+    chat_area.config(state=tk.NORMAL)
+    chat_area.insert(tk.END, f"Ти: {user_input}\n")
+    input_field.delete("1.0", tk.END)
+    chat_area.config(state=tk.DISABLED)
+    chat_area.see(tk.END)
 
     # Показуємо, що йде запит
     chat_area.config(state=tk.NORMAL)
@@ -156,7 +157,7 @@ saved_model/**/* filter=lfs diff=lfs merge=lfs -text
 [[[ENDFILENAME]]]
 
 [[[FILENAME: app.py]]]
-# app.py 0.0.5
+# app.py 0.1.0
 import gradio as gr
 from transformers import pipeline
 
@@ -210,7 +211,7 @@ iface = gr.Interface(
     fn=get_bot_response,  # Функція, яка буде викликатись для отримання відповіді
     inputs=gr.Textbox(lines=2, placeholder="Введіть ваше повідомлення тут..."),  # Поле для вводу тексту
     outputs=gr.Textbox(),  # Поле для виводу відповіді
-    title="Чат для чатботів v0.0.5",  # Змінено назву
+    title="Чат для чатботів v0.1.0",  # Змінено назву
     description="Простий чат-бот на базі моделі з Hugging Face (benjamin/gpt2-wechsel-ukrainian)"  # Опис
 )
 
@@ -224,21 +225,72 @@ if __name__ == '__main__':
 
 [[[FILENAME: README.md]]]
 ---
-title: Ua Chat Ai Backend
-emoji: 🐠
+title: Ua Chat Ai Backend 0.1.0
+emoji: 🔥
 colorFrom: gray
 colorTo: pink
 sdk: gradio
 sdk_version: 5.23.3
 app_file: app.py
 pinned: false
+license: mit
+thumbnail: >-
+  https://cdn-uploads.huggingface.co/production/uploads/6470cecb22d12f52949d4b8d/QNlCsCrNcDsboH76D3pVp.png
 ---
+
+# Ua Chat Ai Backend версії 0.1.0
+
+Цей проєкт представляє собою бекенд для чат-бота, розгорнутий на Hugging Face Space.
+
+**Важливо!** Проєкт розміщено на **безкоштовному** акаунті Hugging Face Spaces. Це означає, що можуть бути певні обмеження у продуктивності, часі очікування та стабільності роботи.
+
+## Обмеження безкоштовного акаунта:
+
+* **Обмежені ресурси CPU/RAM:** Відповіді можуть генеруватися повільніше, особливо під час пікового навантаження.
+* **Можливі затримки:** Час очікування відповіді може бути значним, особливо при першому запиті після періоду простою (Space може "прокидатися").
+* **Можливі простої:** Space може переходити в режим сну, якщо він не використовується.
+* **Обмеження трафіку:** Можуть бути обмеження на кількість запитів.
+* **Відсутність GPU:** Обчислення відбуваються на CPU, що повільніше, ніж на GPU.
+
+## Налаштування
+
+1.  **Отримання URL API:**
+    * Після розгортання Space на Hugging Face, перейдіть у вкладку "API" (можливо, вона знаходиться під кнопкою "...").
+    * Знайдіть "Endpoint" або URL вашого API. Він може мати різні формати, тому уважно перевірте документацію вашого Space.
+2.  **Налаштування клієнта (якщо використовується):**
+    * У файлі `desktop_client.py` знайдіть змінну `HF_SPACE_API_URL` та замініть її на URL, отриманий на попередньому кроці.
+
+## Очікувана продуктивність
+
+На безкоштовному акаунті, очікуйте **повільніших відповідей**, особливо при перших запитах або під час високого навантаження. Продуктивність може бути значно покращена при використанні платного акаунта або іншої платформи.
+
+## Обробка помилок
+
+Можливі наступні помилки:
+
+* **Помилки підключення до API:** Перевірте URL API та підключення до Інтернету.
+* **Тайм-аути:** Space може не відповідати протягом певного часу. Клієнт повинен обробляти ці ситуації та відображати інформативні повідомлення.
+* **Помилки обробки відповіді:** Переконайтеся, що формат відповіді API відповідає очікуваному.
+
+## Альтернативні рішення
+
+* **Використання меншої моделі:** Розгляньте можливість використання меншої моделі для прискорення генерації відповідей.
+* **Оптимізація коду:** Оптимізуйте код для зменшення обчислювального навантаження.
+* **Використання платного акаунта:** Платні акаунти Hugging Face Spaces надають більше ресурсів і можуть значно покращити продуктивність.
+
+## Застереження
+
+Робота цього чат-бота на безкоштовному акаунті Hugging Face Spaces **не гарантує стабільної та швидкої роботи**. Можливі затримки, простої та інші проблеми, пов'язані з обмеженнями ресурсів.
+
+## Контакти
+
+onyxmusictechnologies@gmail.com
 
 Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
 [[[ENDFILENAME]]]
 
 [[[FILENAME: requirements.txt]]]
-# requirements.txt 0.0.4
+# # requirements.txt 0.1.0
 gradio
 transformers==4.28.0  # Або інша конкретна версія, сумісна з Hugging Face Space
 torch==1.13.0         # Або інша конкретна версія, сумісна з Hugging Face Space
