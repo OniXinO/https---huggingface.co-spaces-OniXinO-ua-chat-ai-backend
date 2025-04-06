@@ -1,5 +1,6 @@
-# requirements.txt
+# requirements.txt 0.0.4
 gradio
-transformers>=4.28.0 
-torch>=1.13.0
+transformers==4.28.0  # Або інша конкретна версія, сумісна з Hugging Face Space
+torch==1.13.0         # Або інша конкретна версія, сумісна з Hugging Face Space
 sentencepiece
+requests
